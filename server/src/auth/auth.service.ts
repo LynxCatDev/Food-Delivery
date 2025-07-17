@@ -12,10 +12,10 @@ export class AuthService {
     private jwt: JwtService,
   ) {}
   async register(dto: AuthDto) {
-    const { email, password } = dto;
+    const { email, password, name, avatarPath, phone } = dto;
     const oldUser = await this.prisma.user.findUnique({
       where: {
-        email: email,
+        email,
       },
     });
 
@@ -24,9 +24,9 @@ export class AuthService {
     const user = await this.prisma.user.create({
       data: {
         email,
-        // name,
-        // avatarPath,
-        // phone,
+        name,
+        avatarPath,
+        phone,
         password: await hash(password),
       },
     });
@@ -34,7 +34,7 @@ export class AuthService {
     const tokens = await this.issueTokens(user.id);
 
     return {
-      user: this.returnUserFields(user),
+      user: await this.returnUserFields(user),
       ...tokens,
     };
   }
