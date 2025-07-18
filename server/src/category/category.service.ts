@@ -40,12 +40,13 @@ export class CategoryService {
     return category;
   }
 
-  async create() {
+  async create(dto: CategoryDto) {
+    const { name, image } = dto;
     return this.prisma.category.create({
       data: {
-        name: '',
-        slug: '',
-        image: '',
+        name,
+        image,
+        slug: generateSlug(name),
       },
     });
   }

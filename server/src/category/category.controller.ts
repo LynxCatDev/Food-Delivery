@@ -12,6 +12,7 @@ import {
 } from '@nestjs/common';
 import { CategoryService } from './category.service';
 import { CategoryDto } from './dto/category.dto';
+import { Auth } from 'src/auth/decorators/auth.decorator';
 
 @Controller('categories')
 export class CategoryController {
@@ -34,19 +35,22 @@ export class CategoryController {
 
   @HttpCode(200)
   @Post()
-  async create() {
-    return this.categoryService.create();
+  @Auth()
+  async create(@Body() dto: CategoryDto) {
+    return this.categoryService.create(dto);
   }
 
   @UsePipes(new ValidationPipe())
   @HttpCode(200)
   @Put(':id')
+  @Auth()
   async update(@Param('id') id: string, @Body() dto: CategoryDto) {
     return this.categoryService.update(id, dto);
   }
 
   @HttpCode(200)
   @Delete(':id')
+  @Auth()
   async delete(@Param('id') id: string) {
     return this.categoryService.delete(id);
   }
