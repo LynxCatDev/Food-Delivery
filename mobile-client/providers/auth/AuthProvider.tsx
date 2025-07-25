@@ -2,6 +2,10 @@ import { createContext, ReactNode, useEffect, useState } from 'react';
 import { IAuthContext, UserStateType } from './auth-provider.interface';
 import { View } from 'react-native';
 import * as SplashScreen from 'expo-splash-screen';
+import {
+  getAccessToken,
+  getUserFromStorage,
+} from '@/services/auth/auth.helper';
 
 export const AuthContext = createContext({} as IAuthContext);
 
@@ -10,23 +14,32 @@ let ignore = SplashScreen.preventAutoHideAsync();
 const AuthProvider = ({ children }: { children: any }) => {
   const [user, setUser] = useState<UserStateType>(null);
 
-  // useEffect(() => {
-  //   let isMounted = true;
+  useEffect(() => {
+    let isMounted = true;
 
-  //   const checkAccessToken = async () => {
-  //     try {
-  //     } catch {
-  //     } finally {
-  //       await SplashScreen.hideAsync();
-  //     }
+    const checkAccessToken = async () => {
+      try {
+        const accessToken = await getAccessToken();
 
-  //     let ignore = checkAccessToken();
-  //   };
+        if (accessToken) {
+          const user = await getUserFromStorage();
 
-  //   return () => {
-  //     isMounted = false;
-  //   };
-  // }, []);
+          if (isMounted) {
+            setUser(user);
+          }
+        }
+      } catch {
+      } finally {
+        await SplashScreen.hideAsync();
+      }
+
+      let ignore = checkAccessToken();
+    };
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   return (
     <AuthContext.Provider
