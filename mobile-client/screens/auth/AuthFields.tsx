@@ -22,6 +22,21 @@ export const AuthFields = ({ control }: AuthFieldsProps) => {
             message: 'Please enter a valid email address',
           },
         }}
+        keyboardType="email-address"
+      />
+
+      <Field
+        placeholder="Enter password"
+        control={control}
+        name="password"
+        secureTextEntry
+        rules={{
+          required: 'Password is required',
+          minLength: {
+            value: 6,
+            message: 'Password must be at least 6 characters long',
+          },
+        }}
       />
     </View>
   );

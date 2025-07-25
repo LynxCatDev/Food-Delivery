@@ -9,7 +9,7 @@ const Navigation = () => {
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
-          headerShown: false,
+          headerShown: true,
           contentStyle: {
             backgroundColor: '#fff',
           },
