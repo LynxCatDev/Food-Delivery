@@ -1,24 +1,37 @@
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { TypeRootStackParamList } from './navigation.types';
-import { routes } from './routes';
+import {
+  NavigationContainer,
+  useNavigation,
+  useNavigationContainerRef,
+} from '@react-navigation/native';
+import PrivateNavigation from './PrivateNavigation';
+import BottomMenu from '@/components/Layout/BottomMenu/BottomMenu';
+import { useAuth } from '@/hooks/useAuth';
+import { useEffect, useState } from 'react';
 
 const Navigation = () => {
-  const Stack = createNativeStackNavigator<TypeRootStackParamList>();
+  const [currentRoute, setCurrentRoute] = useState<string | undefined>(
+    undefined,
+  );
+  const { user } = useAuth();
+  const navRef = useNavigationContainerRef();
+
+  useEffect(() => {
+    setCurrentRoute(navRef.getCurrentRoute()?.name);
+    const listener = navRef.addListener('state', () =>
+      setCurrentRoute(navRef.getCurrentRoute()?.name),
+    );
+
+    return () => {
+      navRef.removeListener('state', listener);
+    };
+  }, []);
+
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerShown: true,
-          contentStyle: {
-            backgroundColor: '#fff',
-          },
-        }}
-      >
-        {routes.map((route, i) => (
-          <Stack.Screen key={i} {...route} />
-        ))}
-      </Stack.Navigator>
+    <NavigationContainer ref={navRef}>
+      <PrivateNavigation />
+      {user && currentRoute && (
+        <BottomMenu nav={navRef.navigate} currentRoute={currentRoute} />
+      )}
     </NavigationContainer>
   );
 };

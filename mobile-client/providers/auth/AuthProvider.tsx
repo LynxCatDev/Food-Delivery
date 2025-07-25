@@ -7,26 +7,26 @@ export const AuthContext = createContext({} as IAuthContext);
 
 let ignore = SplashScreen.preventAutoHideAsync();
 
-const AuthProvider = ({ children }: { children: ReactNode }) => {
+const AuthProvider = ({ children }: { children: any }) => {
   const [user, setUser] = useState<UserStateType>(null);
 
-  useEffect(() => {
-    let isMounted = true;
+  // useEffect(() => {
+  //   let isMounted = true;
 
-    const checkAccessToken = async () => {
-      try {
-      } catch {
-      } finally {
-        await SplashScreen.hideAsync();
-      }
+  //   const checkAccessToken = async () => {
+  //     try {
+  //     } catch {
+  //     } finally {
+  //       await SplashScreen.hideAsync();
+  //     }
 
-      let ignore = checkAccessToken();
-    };
+  //     let ignore = checkAccessToken();
+  //   };
 
-    return () => {
-      isMounted = false;
-    };
-  }, []);
+  //   return () => {
+  //     isMounted = false;
+  //   };
+  // }, []);
 
   return (
     <AuthContext.Provider
