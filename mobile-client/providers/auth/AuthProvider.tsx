@@ -9,13 +9,13 @@ import {
 
 export const AuthContext = createContext({} as IAuthContext);
 
-let ignore = SplashScreen.preventAutoHideAsync();
-
 const AuthProvider = ({ children }: { children: any }) => {
   const [user, setUser] = useState<UserStateType>(null);
 
   useEffect(() => {
     let isMounted = true;
+
+    SplashScreen.preventAutoHideAsync();
 
     const checkAccessToken = async () => {
       try {
@@ -33,7 +33,7 @@ const AuthProvider = ({ children }: { children: any }) => {
         await SplashScreen.hideAsync();
       }
 
-      let ignore = checkAccessToken();
+      checkAccessToken();
     };
 
     return () => {

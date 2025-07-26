@@ -36,6 +36,9 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "SERVER_URL": "http://192.168.31.203:8081"
     }
   }
 }

@@ -5,6 +5,7 @@ import { IAuthFormData } from 'types/auth.interface';
 import { Loader } from 'components/Loader/Loader';
 import { Button } from 'components/Button/Button';
 import { AuthFields } from './AuthFields';
+import { useAuthMutations } from './useAuthMutations';
 
 const Auth = () => {
   const [isReg, setIsReg] = useState(false);
@@ -13,11 +14,16 @@ const Auth = () => {
     mode: 'onChange',
   });
 
+  const { loginSync, registerSync, isLoading } = useAuthMutations(reset);
+
   const onSubmit = (data: IAuthFormData) => {
-    console.log(data);
+    if (isReg) {
+      registerSync(data);
+    } else {
+      loginSync(data);
+    }
   };
 
-  const isLoading = false;
   return (
     <View className="mx-2 items-center justify-center h-full">
       <View className="w-9/12">

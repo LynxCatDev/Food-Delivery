@@ -1,4 +1,7 @@
-export const SERVER_URL = process.env.SERVER_URL;
+import Constants from 'expo-constants';
+
+export const SERVER_URL =
+  Constants.expoConfig?.extra?.SERVER_URL ?? 'http://localhost:8081';
 export const API_URL = `${SERVER_URL}/api`;
 
 export const getAuthUrl = (path: string) => `/auth/${path}`;
