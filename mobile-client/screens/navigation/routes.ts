@@ -4,6 +4,9 @@ import Auth from 'screens/auth/Auth';
 import Search from '../search/Search';
 import Explorer from '../explorer/Explorer';
 import Profile from '../profile/Profile';
+import Cart from '../cart/Cart';
+import Category from '../category/Category';
+import Product from '../product/Product';
 
 export const routes: IRoute[] = [
   {
@@ -25,5 +28,17 @@ export const routes: IRoute[] = [
   {
     name: 'Profile',
     component: Profile,
+  },
+  {
+    name: 'Cart',
+    component: Cart,
+  },
+  {
+    name: 'Category',
+    component: Category,
+  },
+  {
+    name: 'Product',
+    component: Product,
   },
 ];

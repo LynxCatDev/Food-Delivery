@@ -1,14 +1,16 @@
-import { useTypedNavigation } from 'hooks/useTypedNavigation';
-import { View, Text, Pressable } from 'react-native';
+import Layout from '@/components/Layout/Layout';
+import { Header } from './Header';
+import { Banner } from './Banner';
+import { Categories } from '@/components/Categories/Categories';
 
-export default function Home() {
-  const { navigate } = useTypedNavigation();
+const Home = () => {
   return (
-    <View className="flex-1 items-center justify-center bg-white">
-      <Text className="text-3xl font-bold">Home</Text>
-      <Pressable onPress={() => navigate('Auth')}>
-        <Text className="text-blue-500 mt-4">Go to Auth</Text>
-      </Pressable>
-    </View>
+    <Layout>
+      <Header />
+      <Banner />
+      <Categories />
+    </Layout>
   );
-}
+};
+
+export default Home;
