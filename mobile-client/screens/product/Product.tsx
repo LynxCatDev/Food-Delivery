@@ -6,9 +6,14 @@ import { getMediaSource } from '@/utils/getMediaSource';
 import { ProductHeader } from './ProductHeader';
 import { ProductInfo } from './ProductInfo';
 import { Button } from '@/components/Button/Button';
+import { useActions } from '@/hooks/useActions';
+import { useCart } from '@/hooks/useCart';
 
 const Product = () => {
   const { product, isLoading } = useProduct();
+  const { addToCart, removeFromCart } = useActions();
+  const { items } = useCart();
+  const currentElement = items.find((item) => item.product.id === product?.id);
 
   if (isLoading) return <Loader />;
   if (!product) return null;
@@ -26,7 +31,20 @@ const Product = () => {
       </View>
 
       <ProductInfo product={product} />
-      <Button className="mt-6">Add to cart</Button>
+      <Button
+        onPress={() =>
+          currentElement
+            ? removeFromCart({ id: currentElement.id })
+            : addToCart({
+                product,
+                quantity: 1,
+                price: product.price,
+              })
+        }
+        className="mt-6"
+      >
+        {currentElement ? 'Remove from cart' : 'Add to cart'}
+      </Button>
     </Layout>
   );
 };

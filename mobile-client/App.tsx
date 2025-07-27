@@ -5,6 +5,9 @@ import AuthProvider from './providers/auth/AuthProvider';
 import Toast from './components/Toast/Toast';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import './global.css';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { persistor, store } from './store/store';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -17,13 +20,17 @@ const queryClient = new QueryClient({
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      {/* <AuthProvider> */}
-      <SafeAreaProvider>
-        <Navigation />
-        <StatusBar barStyle="light-content" />
-        <Toast />
-      </SafeAreaProvider>
-      {/* </AuthProvider> */}
+      <Provider store={store}>
+        <PersistGate persistor={persistor} loading={null}>
+          <AuthProvider>
+            <SafeAreaProvider>
+              <Navigation />
+              <StatusBar barStyle="light-content" />
+              <Toast />
+            </SafeAreaProvider>
+          </AuthProvider>
+        </PersistGate>
+      </Provider>
     </QueryClientProvider>
   );
 }

@@ -20,7 +20,7 @@ model User {
   avatarPath String @default("/uploads/default-avatar.png") @map("avatar_path")
   phone      String @default("")
   favorites Product[]
-  order Order[]
+  orders Order[]
 
   @@map("user")
 }
@@ -41,6 +41,8 @@ model Product {
 
   user User? @relation(fields: [userId], references: [id])
   userId String?
+
+  orderItems OrderItem[]
   
   @@map("product")
 }
@@ -64,11 +66,28 @@ model Order {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
-  reference String @unique
+  items OrderItem[]
+  total Int
 
   user User? @relation(fields: [userId], references: [id])
-  userId String?
+  userId String? @map("user_id")
 
   @@map("order")
 }
 
+model OrderItem {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  order Order? @relation(fields: [orderId], references: [id])
+  orderId String? @map("order_id")
+
+  product Product? @relation(fields: [productId], references: [id])
+  productId String? @map("product_id")
+
+  quantity Int
+  price Int
+
+  @@map("order_item")
+}

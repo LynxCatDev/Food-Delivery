@@ -1,5 +1,5 @@
 import { IProduct } from '@/types/products.interface';
 
-export interface ProductHeaderProps {
+export interface ProductProps {
   product: IProduct;
 }
