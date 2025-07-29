@@ -8,6 +8,7 @@ import './global.css';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { persistor, store } from './store/store';
+import { StripeProvider } from '@stripe/stripe-react-native';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -24,7 +25,9 @@ export default function App() {
         <PersistGate persistor={persistor} loading={null}>
           <AuthProvider>
             <SafeAreaProvider>
-              <Navigation />
+              <StripeProvider publishableKey={process.env.STRIPE_KEY as string}>
+                <Navigation />
+              </StripeProvider>
               <StatusBar barStyle="light-content" />
               <Toast />
             </SafeAreaProvider>

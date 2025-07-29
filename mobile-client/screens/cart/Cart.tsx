@@ -5,9 +5,11 @@ import { useCart } from '@/hooks/useCart';
 import { convertPrice } from '@/utils/convertPrice';
 import { Text, View } from 'react-native';
 import { CartItem } from './CartItem';
+import { useCheckout } from './useCheckout';
 
 const Cart = () => {
   const { items, total } = useCart();
+  const { onCheckout } = useCheckout();
   return (
     <Layout>
       <Heading>Cart</Heading>
@@ -24,7 +26,13 @@ const Cart = () => {
             Total: {convertPrice(total)}
           </Text>
 
-          <Button onPress={() => {}}>Place order</Button>
+          <Button
+            onPress={() => {
+              onCheckout;
+            }}
+          >
+            Place order
+          </Button>
         </View>
       )}
     </Layout>
