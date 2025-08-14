@@ -1,50 +1,53 @@
-# Welcome to your Expo app 👋
+# 🍕 Food Delivery App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A full-stack food delivery application built with React Native (Expo) for the mobile client and NestJS for the backend server.
 
-## Get started
+## 📱 Project Overview
 
-1. Install dependencies
+This project enables users to browse restaurants, view menus, place orders, and track deliveries through a mobile application, with a robust backend API managing all operations.
 
-   ```bash
-   npm install
-   ```
+## 🚀 Getting Started
 
-2. Start the app
+### Prerequisites
 
-   ```bash
-   npx expo start
-   ```
+- Node.js (v18 or higher)
+- npm or yarn
+- Expo CLI: `npm install -g @expo/cli`
+- For iOS development: Xcode
+- For Android development: Android Studio
 
-In the output, you'll find options to open the app in a
+### Installation
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+1. **Clone the repository**
+   git clone https://github.com/LynxCatDev/Food-Delivery.git
+   cd Food-Delivery/mobile-client
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+2. **Install dependencies for both client and server**
+   npm install/yarn add
 
-## Get a fresh project
+### Running the Application
 
-When you're ready, run:
+- `npm run android/yarn android` - Run on Android device/emulator
+- `npm run ios/yarn ios` - Run on iOS device/simulator
+- `npm run start/yarn start` -This will open the Expo development server. You can then: - Press `i` to open iOS simulator - Press `a` to open Android emulator - Scan QR code with Expo Go app on your phone
 
-```bash
-npm run reset-project
-```
+The server will start on `http://192.168.31.203:8081`
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## 🛠️ Development Setup
 
-## Learn more
+### Environment Variables
 
-To learn more about developing your project with Expo, look at the following resources:
+Create `.env` files in both directories using the provided examples:
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+**Mobile (.env)**
+cp mobile/.env.example mobile/.env
 
-## Join the community
+## 📝 License
 
-Join our community of developers creating universal apps.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## 👨‍💻 Author
+
+Tudor Uzun
+
+**LynxCatDev** - [GitHub Profile](https://github.com/LynxCatDev)

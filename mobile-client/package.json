@@ -1,7 +1,9 @@
 {
-  "name": "mobile-client",
+  "name": "food-delivery_mobile-client",
   "main": "node_modules/expo/AppEntry.js",
   "version": "1.0.0",
+  "description": "A full-stack food delivery application with React Native client and NestJS server",
+  "author": "Tudor Uzun",
   "scripts": {
     "start": "expo start",
     "reset-project": "node ./scripts/reset-project.js",
