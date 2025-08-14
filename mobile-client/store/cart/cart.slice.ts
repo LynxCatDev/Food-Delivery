@@ -15,13 +15,13 @@ export const cartSlice = createSlice({
   reducers: {
     addToCart: (state, action: PayloadAction<IAddToCartPayload>) => {
       const isExists = state.items.some(
-        (item) => item.product.id === action.payload.toString(),
+        (item) => item.product.id === action.payload.product.id,
       );
 
       if (!isExists) {
         state.items.push({
           ...action.payload,
-          id: state.items.length.toString(),
+          id: String(Date.now()),
         });
       }
     },
@@ -33,7 +33,9 @@ export const cartSlice = createSlice({
       const item = state.items.find((item) => item.id === id);
 
       if (item) {
-        type === 'plus' ? item.quantity++ : item.quantity--;
+        if (type === 'plus') item.quantity++;
+        else if (item.quantity > 1) item.quantity--;
+        else state.items = state.items.filter((i) => i.id !== id);
       }
     },
     reset: (state) => {

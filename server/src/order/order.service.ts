@@ -3,13 +3,19 @@ import { PrismaService } from 'src/prisma.service';
 import { returnProductObject } from 'src/product/return-product.object';
 import Stripe from 'stripe';
 import { OrderDto } from './dto/order.dto';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class OrderService {
   private stripe: Stripe;
 
-  constructor(private prisma: PrismaService) {
-    this.stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '');
+  constructor(
+    private cfg: ConfigService,
+    private prisma: PrismaService,
+  ) {
+    const key = this.cfg.get<string>('STRIPE_SECRET_KEY');
+    if (!key) throw new Error('STRIPE_SECRET_KEY is not set');
+    this.stripe = new Stripe(key);
   }
 
   getAll = async () => {

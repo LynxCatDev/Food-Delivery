@@ -13,7 +13,7 @@ import { OrderModule } from './order/order.module';
 @Module({
   imports: [
     AuthModule,
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({ isGlobal: true }),
     CategoryModule,
     ProductModule,
     UserModule,
