@@ -30,7 +30,7 @@ The server will start on `http://localhost:4200`
 Create `.env` files in both directories using the provided examples:
 
 **Server (.env)**
-cp mobile/.env.example mobile/.env
+mobile/.env.example mobile/.env
 
 ## 📝 License
 
@@ -39,5 +39,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 👨‍💻 Author
 
 Tudor Uzun
-
-**LynxCatDev** - [GitHub Profile](https://github.com/LynxCatDev)

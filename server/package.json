@@ -1,7 +1,7 @@
 {
   "name": "food-delivery-server",
   "version": "0.0.1",
-  "description": "",
+  "description": "A full-stack food delivery application with React Native client and NestJS server",
   "author": "Tudor Uzun",
   "private": true,
   "license": "UNLICENSED",

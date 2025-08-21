@@ -49,5 +49,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 👨‍💻 Author
 
 Tudor Uzun
-
-**LynxCatDev** - [GitHub Profile](https://github.com/LynxCatDev)
